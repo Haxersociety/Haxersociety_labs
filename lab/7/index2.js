@@ -38,8 +38,8 @@ let pacman = {
 	y: 10*cell,
 };
 let ghostR = {
-	x: 9*cell,
-	y: 8*cell,
+	x: 10*cell,
+	y: 10*cell,
 };
 
 // 0 - wall
@@ -55,10 +55,10 @@ matrixMap = [
 	[0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0],
 	[0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0],
 	[2, 2, 2, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 2, 2, 2],
-	[0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+	[0, 0, 0, 0, 1, 0, 1, 0, 0, 3, 0, 0, 1, 0, 1, 0, 0, 0, 0],
 	[2, 2, 2, 2, 1, 1, 1, 0, 3, 3, 3, 0, 1, 1, 1, 2, 2, 2, 2],
 	[0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
-	[2, 2, 2, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 2, 2, 2],
+	[2, 2, 2, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 0, 1, 0, 2, 2, 2],
 	[0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
 	[0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
 	[0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0],
@@ -72,20 +72,10 @@ matrixMap = [
 
 let ghRX = ghostR.x;
 let ghRY = ghostR.y;
-let ghRXx = ghostR.x;
-let ghRYy = ghostR.y;
 let score = 0;
 let pacX = pacman.x;
 let pacY = pacman.y;
-let pacXX = pacman.x;
-let pacYY = pacman.y;
 document.addEventListener("keydown", direction);
-
-function moveGhost(){
-	if(ghRX > PacX){
-		
-	}
-}
 
 let dir;
 let dirL;
@@ -95,46 +85,38 @@ function direction(){
 		case 37:
 			if(dir == "right")
 				break;
-			if(dir == "up" || dir == "down" && matrixMap[pacYY/cell][pacXX/cell-1] == 0){
+			if(dir == "up" || dir == "down" && matrixMap[pacY/cell][pacX/cell-1] == 0){
 				dirL = "left";
 				break;
 			}
-			if(pacY%20 == 0 && pacX%20 == 0)
 			dir = "left";
-			dirL = "left";
 			break;
 		case 38:
 			if(dir == "down")
 				break;
-			if(dir == "left" || dir == "right" && matrixMap[pacYY/cell-1][pacXX/cell] == 0){
+			if(dir == "left" || dir == "right" && matrixMap[pacY/cell-1][pacX/cell] == 0){
 				dirL = "up";
 				break;
 			}
-			if(pacY%20 == 0 && pacX%20 == 0)
 			dir = "up";
-			dirL = "up";
 			break;
 		case 39:
 			if(dir == "left")
 				break;
-			if(dir == "up" || dir == "down" && matrixMap[pacYY/cell][pacXX/cell+1] == 0){
+			if(dir == "up" || dir == "down" && matrixMap[pacY/cell][pacX/cell+1] == 0){
 				dirL = "right";
 				break;
 			}
-			if(pacY%20 == 0 && pacX%20 == 0)
 			dir = "right";
-			dirL = "right";
 			break;
 		case 40:
 			if(dir == "up")
 				break;
-			if(dir == "left" || dir == "right" && matrixMap[pacYY/cell+1][pacXX/cell] == 0){
+			if(dir == "left" || dir == "right" && matrixMap[pacY/cell+1][pacX/cell] == 0){
 				dirL = "down";
 				break;
 			}
-			if(pacY%20 == 0 && pacX%20 == 0)
 			dir = "down";
-			dirL = "down";
 			break;
 		default:
 			dir = "stop";
@@ -226,65 +208,53 @@ function drawGame(){
 
 	//ctx.drawImage(pacMan, pacman.x, pacman.y);
 	if(dir == "left"){
-		if(matrixMap[pacYY/cell][pacXX/cell-1] == 0){
+		if(matrixMap[pacY/cell][pacX/cell-1] == 0){
 			dir = "stop";
 		}
-		else{
-			pacX -= 5;
-			if(pacX%20 == 0) pacXX -= cell; 
-		}
+		else
+			pacX -= cell;
 	}
 	if(dir == "right"){
-		if(matrixMap[pacYY/cell][pacXX/cell+1] == 0){
+		if(matrixMap[pacY/cell][pacX/cell+1] == 0){
 			dir = "stop";
 		}
-		else{
-			pacX += 5;
-			if(pacX%20 == 0) pacXX += cell; 
-		}
+		else
+			pacX += cell;
 	}
 	if(dir == "up"){
-		if(matrixMap[pacYY/cell-1][pacXX/cell] == 0){
+		if(matrixMap[pacY/cell-1][pacX/cell] == 0){
 			dir = "stop";
 		}
-		else{
-			pacY -= 5;
-			if(pacY%20 == 0) pacYY -= cell; 
-		}
+		else
+			pacY -= cell;
 	}
 	if(dir == "down"){
-		if(matrixMap[pacYY/cell+1][pacXX/cell] == 0){
+		if(matrixMap[pacY/cell+1][pacX/cell] == 0){
 			dir = "stop";
 		}
-		else{
-			pacY += 5;
-			if(pacY%20 == 0) pacYY += cell; 
-		}
+		else
+			pacY += cell;
 	}
-	if(matrixMap[pacYY/cell][pacXX/cell-1] != 0 && dirL == "left" && pacY%20 == 0 && pacX%20 == 0){
+	if(matrixMap[pacY/cell][pacX/cell-1] != 0 && dirL == "left"){
 		dirL = "0";
 		dir = "left";
 	}
-	if(matrixMap[pacYY/cell][pacXX/cell+1] != 0 && dirL == "right" && pacY%20 == 0 && pacX%20 == 0){
+	if(matrixMap[pacY/cell][pacX/cell+1] != 0 && dirL == "right"){
 		dirL = "0";
 		dir = "right";
 	}
-	if(matrixMap[pacYY/cell-1][pacXX/cell] != 0 && dirL == "up" && pacY%20 == 0 && pacX%20 == 0){
+	if(matrixMap[pacY/cell-1][pacX/cell] != 0 && dirL == "up"){
 		dirL = "0";
 		dir = "up";
 	}
-	if(matrixMap[pacYY/cell+1][pacXX/cell] != 0 && dirL == "down" && pacY%20 == 0 && pacX%20 == 0){
+	if(matrixMap[pacY/cell+1][pacX/cell] != 0 && dirL == "down"){
 		dirL = "0";
 		dir = "down";
 	}
-	if(dir == "left" && pacX == 0){
-		pacXX = 380;
+	if(dir == "left" && pacX == 0)
 		pacX = 380;
-	}
-	if(dir == "right" && pacX == 360){
-		pacXX = 0;
+	if(dir == "right" && pacX == 360)
 		pacX = 0;
-	}
 	ctx.drawImage(ghostRed, ghRX, ghRY);
 	ctx.drawImage(pacMan, pacX, pacY);
 	for(let i = 0; i < 18; i++){
@@ -296,7 +266,6 @@ function drawGame(){
 			}
 		
 	}
-	moveGhost();
 }
 
 let game = setInterval(drawGame, 100);
