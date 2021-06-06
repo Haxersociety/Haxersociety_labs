@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>particles.js</title>
-  <meta name="description" content="particles.js is a lightweight JavaScript library for creating particles.">
-  <meta name="author" content="Vincent Garreau" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>HaxerSociety's website</title>
   <link rel="stylesheet" media="screen" href="demo/css/style.css">
 </head>
 <body>
@@ -14,7 +11,7 @@
 <ul class="btnWrap">
   <li><a href="https://slem7451.github.io/inet/1/">Квадратное уравнение на JS</a></li>
   <li><a href="https://slem7451.github.io/inet/2/">Часы на JS</a></li>
-  <li><a href="https://slem7451.github.io/inet/4/">Динозаврик с монетками на JS</a></li>
+  <li><a href="https://slem7451.github.io/inet/4/">Динозаврик со звездами на JS</a></li>
   <li><a href="https://github.com/slem7451/slem7451.github.io/tree/main/inet/5">Квадратное уравнение на Go</a></li>
   <li><a href="https://slem7451.github.io/inet/6/">Крестики-нолики с CSS анимацией</a></li>
   <li><a href="https://slem7451.github.io/inet/7/">PacMan(недоделаный)</a></li>
@@ -22,43 +19,15 @@
 <div class="name">
 <span class="textName">Костылев Леонид</span>
 </div>
-<div class="count-particles">
-  <span class="js-count-particles">--</span> particles
-</div>
 <div class="icon">
   <a href="https://vk.com/c0_0l">
     <svg id="Bold" enable-background="new 0 0 24 24" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m19.915 13.028c-.388-.49-.277-.708 0-1.146.005-.005 3.208-4.431 3.538-5.932l.002-.001c.164-.547 0-.949-.793-.949h-2.624c-.668 0-.976.345-1.141.731 0 0-1.336 3.198-3.226 5.271-.61.599-.892.791-1.225.791-.164 0-.419-.192-.419-.739v-5.105c0-.656-.187-.949-.74-.949h-4.126c-.419 0-.668.306-.668.591 0 .622.945.765 1.043 2.515v3.797c0 .832-.151.985-.486.985-.892 0-3.057-3.211-4.34-6.886-.259-.713-.512-1.001-1.185-1.001h-2.625c-.749 0-.9.345-.9.731 0 .682.892 4.073 4.148 8.553 2.17 3.058 5.226 4.715 8.006 4.715 1.671 0 1.875-.368 1.875-1.001 0-2.922-.151-3.198.686-3.198.388 0 1.056.192 2.616 1.667 1.783 1.749 2.076 2.532 3.074 2.532h2.624c.748 0 1.127-.368.909-1.094-.499-1.527-3.871-4.668-4.023-4.878z"/></svg>
   </a>
 </div>
 
-<!-- particles.js container -->
-<div id="particles-js"></div>
-
 <!-- scripts -->
 <script src="index.js"></script>
 <script src="demo/js/app.js"></script>
-
-<!-- stats.js -->
-<script src="demo/js/lib/stats.js"></script>
-<script>
-  var count_particles, stats, update;
-  stats = new Stats;
-  stats.setMode(0);
-  stats.domElement.style.position = 'absolute';
-  stats.domElement.style.left = '0px';
-  stats.domElement.style.top = '0px';
-  document.body.appendChild(stats.domElement);
-  count_particles = document.querySelector('.js-count-particles');
-  update = function() {
-    stats.begin();
-    stats.end();
-    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-      count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-    }
-    requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);
-</script>
 
 </body>
 </html>
