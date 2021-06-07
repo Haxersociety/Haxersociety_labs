@@ -99,7 +99,7 @@ function makeMove(event) {
     }
     console.log(cellToAddToken);
 ;
-    cellToAddToken.style.animationDuration = "1.5s";
+    cellToAddToken.style.animationDuration = "1s";
     cellToAddToken.style.animationName = "slidein";
     cellToAddToken.removeAttribute("animation-duration");
     cellToAddToken.removeAttribute("animation-name");
@@ -117,7 +117,7 @@ function makeMove(event) {
 
 function checkIfTie() {
   if (turn > 7) {
-    alert('Ну ничего страшного тяу тяу тяу тяу')
+    alert('Ничья! Нажмите, "Очистить доску"')
   }
 }
 
@@ -160,16 +160,16 @@ function isWinner() {
       let currentPlayerText = document.querySelector('.board___player-turn');
       if (currentPlayer() === 'X') {
         currentPlayerText.innerHTML = `
-          <div class="congratulations">GG WP ${playerX.name}</div>
-          <div class="u-r-winner"> В СОЛО </div>
+          <div class="congratulations">Поздравляю, игрок ${playerX.name},</div>
+          <div class="u-r-winner">ты выиграл </div>
         `;
         winner = true;
         removeCellClickListener();
         return true;
       } else {
         currentPlayerText.innerHTML = `
-          <div class="congratulations">GG WP ${playerY.name}</div>
-          <div class="u-r-winner">Легчайшая </div>
+          <div class="congratulations">Поздравляю, игрок ${playerY.name},</div>
+          <div class="u-r-winner">ты выиграл! </div>
         `;
         winner = true;
         removeCellClickListener();

@@ -5,10 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch file",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "L:\\Git\\io\\lab\\5\\app.go"
+        },
+        {
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Open index.html",
-            "file": "l:\\Git\\io\\index.html"
+            "file": "l:\\Git\\io\\lab\\2\\index.html"
         }
     ]
 }
