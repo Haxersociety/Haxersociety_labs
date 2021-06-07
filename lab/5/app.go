@@ -1,7 +1,10 @@
 package main
-import ("fmt"
-"math"
+
+import (
+	"fmt"
+	"math"
 )
+
 func main() {
 	var a float64
 	var b float64
@@ -15,22 +18,21 @@ func main() {
 			fmt.Println("Error")
 		}
 	} else if a == 0 {
-		var x float64 = -c/b
-		fmt.Printf("x = %.3f", x)
+		var x float64 = -c / b
+		fmt.Println("x =", x)
 	} else {
 		var x1 float64
 		var x2 float64
 		var D float64
 		D = b*b - 4*a*c
 		if D >= 0 {
-			x1 = (-b + math.Sqrt(D))/(2*a)
-			x2 = (-b - math.Sqrt(D))/(2*a)
-			fmt.Printf("x1 = %.3f, x2 = %.3f", x1, x2)
+			x1 = (-b + math.Sqrt(D)) / (2 * a)
+			x2 = (-b - math.Sqrt(D)) / (2 * a)
+			fmt.Println("x1 =", x1, "/ x2 =", x2)
 		} else {
-			x1 = -b/(2*a)
-			x2 = -b/(2*a)
-			D = math.Sqrt(-D)/(2*a)
-			fmt.Printf("x1 = %.3f + %.3fi / x2 = %.3f - %.3fi", x1, D, x2, D)
+			var x3 = complex(-b/(2*a), math.Sqrt(-D)/(2*a))
+			var x4 = complex(-b/(2*a), -math.Sqrt(-D)/(2*a))
+			fmt.Println("x1 =", x3, " / x2 =", x4)
 		}
 	}
 }
